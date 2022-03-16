@@ -12,33 +12,38 @@ public class SimpleDependantCfg {
 
     private final Logger logger = LoggerFactory.getLogger(SimpleDependantCfg.class);
 
-//    @Bean
-//    SimpleBean simpleBean() {
-//        return new SimpleBeanImpl();
-//    }
-//
-//    @Bean
-//    DependantBean dependantBean() {
-//        return new DependantBeanImpl(simpleBean());
-//    }
-
-//    @Bean("customSimpleBean")
-//    SimpleBean simpleBean() {
-//        return new SimpleBeanImpl();
-//    }
-//
-//    @Bean("customDependantBean")
-//    DependantBean dependantBean() {
-//        return new DependantBeanImpl(simpleBean());
-//    }
-
-    @Bean({"customSimpleBean1", "customSimpleBean2"})
+    @Bean
     SimpleBean simpleBean() {
         return new SimpleBeanImpl();
     }
 
-    @Bean({"customDependantBean1", "customDependantBean2"})
+    @Bean
     DependantBean dependantBean() {
         return new DependantBeanImpl(simpleBean());
     }
+
+    /*
+    @Bean("customSimpleBean")
+    SimpleBean simpleBean() {
+        return new SimpleBeanImpl();
+    }
+
+    @Bean("customDependantBean")
+    DependantBean dependantBean() {
+        return new DependantBeanImpl(simpleBean());
+   }
+
+     */
+
+    @Bean({"customSimpleBean1", "customSimpleBean2"})
+    SimpleBean simpleBeann() {
+        return new SimpleBeanImpl();
+    }
+
+    @Bean({"customDependantBean1", "customDependantBean2"})
+    DependantBean dependantBeann() {
+        return new DependantBeanImpl(simpleBean());
+    }
+
+
 }
