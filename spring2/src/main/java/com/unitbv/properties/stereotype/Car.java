@@ -4,6 +4,6 @@ import lombok.Getter;
 
 @Getter
 public class Car {
-    private String model;
+    private String model = "Audi";
 
 }
