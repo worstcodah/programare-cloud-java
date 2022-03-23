@@ -16,19 +16,16 @@ public class AppConfig {
     private String model;
 
     @Bean
-    public Car car()
-    {
+    public Car car() {
         return new Car(this.model);
     }
 
     @Bean
-    public static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer()
-    {
-        PropertySourcesPlaceholderConfigurer pspc=new PropertySourcesPlaceholderConfigurer();
-        Resource[] resources = new ClassPathResource[ ]
-                { new ClassPathResource( "application.properties" ) };
-        pspc.setLocations( resources );
-        pspc.setIgnoreUnresolvablePlaceholders( true );
+    public static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer() {
+        PropertySourcesPlaceholderConfigurer pspc = new PropertySourcesPlaceholderConfigurer();
+        Resource[] resources = new ClassPathResource[]
+                {new ClassPathResource("application.properties")};
+        pspc.setLocations(resources);
         return pspc;
     }
 }

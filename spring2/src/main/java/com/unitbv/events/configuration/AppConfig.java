@@ -4,6 +4,7 @@ import com.unitbv.dependsOn.BeanA;
 import com.unitbv.events.event.CarForRentEvent;
 import com.unitbv.events.service.CarService;
 import com.unitbv.events.service.PersonService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -13,6 +14,7 @@ import org.springframework.context.annotation.DependsOn;
 public class AppConfig {
 
     @Bean
+    @Autowired
     public PersonService personService() {
         return new PersonService(new ApplicationEventPublisher() {
             @Override
@@ -23,6 +25,7 @@ public class AppConfig {
     }
 
     @Bean()
+
     public CarService carService() {
         return new CarService();
     }
