@@ -42,12 +42,12 @@ public class MyRecipe {
             throw new RuntimeException("Recipe with name " + i.getName() + " already exists!");
         });
 
-        if(recipe.getName() == null || recipe.getName().isEmpty()){
+        if (recipe.getName() == null || recipe.getName().isEmpty()) {
             throw new RuntimeException("Recipe name can not be null!");
         }
 
-        for(Ingredient ingredient: recipe.getIngredients()){
-            if(ingredient.getName() == null|| ingredient.getName().isEmpty()){
+        for (Ingredient ingredient : recipe.getIngredients()) {
+            if (ingredient.getName() == null || ingredient.getName().isEmpty()) {
                 throw new RuntimeException("Ingredient name can not be null!");
             }
         }
