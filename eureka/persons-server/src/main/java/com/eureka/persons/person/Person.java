@@ -23,17 +23,21 @@ import java.util.Objects;
 @Setter
 @NoArgsConstructor
 public class Person extends AbstractEntity {
-    interface BasicValidation{}
+    interface BasicValidation {
+    }
+
 
     @NotNull(groups = BasicValidation.class)
     @Size(min = 3, max = 30, groups = BasicValidation.class)
     @Column(nullable = false, unique = true)
     private String username;
 
+
     @NotNull(groups = BasicValidation.class)
     @Size(min = 3, max = 30, groups = BasicValidation.class)
     @Column(nullable = false)
     private String firstName;
+
 
     @NotNull(groups = BasicValidation.class)
     @Size(min = 3, max = 30, groups = BasicValidation.class)
@@ -45,6 +49,7 @@ public class Person extends AbstractEntity {
     @Size(min = 4, max = 50)
     @Column(nullable = false)
     private String password;
+
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = DateProcessor.DATE_FORMAT)
     @NotNull(groups = BasicValidation.class)
