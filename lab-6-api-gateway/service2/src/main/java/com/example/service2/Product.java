@@ -39,8 +39,6 @@ public class Product extends AbstractEntity {
     private int quantity;
 
 
-    private String newPassword;
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

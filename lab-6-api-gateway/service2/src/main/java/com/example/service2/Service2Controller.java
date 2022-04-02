@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
+@RequestMapping("/products")
 public class Service2Controller {
 
     private static ArrayList<Product> products = new ArrayList<>();
@@ -21,9 +22,8 @@ public class Service2Controller {
 
     @ResponseStatus(HttpStatus.OK)
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public String list(@RequestHeader Map<String, String> headers, @RequestBody Product product) {
+    public void list(@RequestHeader Map<String, String> headers, @RequestBody Product product) {
         products.add(product);
         System.out.println("Headers {" + headers + "}");
-        return "Hello Brasov";
     }
 }

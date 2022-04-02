@@ -12,9 +12,9 @@ import java.util.Map;
 public class Service1Controller {
 
     @ResponseStatus(HttpStatus.OK)
-    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public String list(@RequestHeader Map<String, String> headers) {
+    @GetMapping("/greeting/{name}")
+    public String list(@RequestHeader Map<String, String> headers, @PathVariable String name) {
         System.out.println("Headers {" + headers + "}");
-        return "Hello Brasov";
+        return "Hello Brasov " + name;
     }
 }

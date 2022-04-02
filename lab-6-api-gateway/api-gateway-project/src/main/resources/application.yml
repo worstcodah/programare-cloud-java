@@ -1,17 +1,27 @@
 server:
   port: 8080
+  adress: 0.0.0.0
 #TODO use eureka to discover the URL for the service1 and service2
 #TODO configure spring cloud gateway to route the request to downstream services (service1 and service2) based on the paths(/api/greeting, /product)
 #TODO for greeting endpoint add a route to accept requests to /greeting but before calling service1 it must append api before the greeting path (HINT: rewrite path filter)
 #and method types (GET,POST)
 eureka:
   client:
-    register-with-eureka: false
-    fetch-registry: false
     service-url:
-      defaultZone: http://localhost:8080/eureka
+      defaultZone: http://localhost:3000/eureka
 spring:
   application:
     name: gateway
+  cloud:
+    gateway:
+      routes:
+        - id: first-service
+          uri: http://localhost:8081
+          predicates:
+            - Path=/api/greeting/**
+        - id: second-service
+          uri: http://localhost:8082
+          predicates:
+            - Path=/products/**
   main:
     web-application-type: reactive
