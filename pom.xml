@@ -23,6 +23,8 @@
     <module>rest-service</module>
     <module>eureka</module>
     <module>lab-6-api-gateway</module>
+    <module>SpringConfigClient</module>
+    <module>SpringConfigServer</module>
   </modules>
 
   <dependencies>
