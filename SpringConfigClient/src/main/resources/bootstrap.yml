@@ -1,6 +1,6 @@
 spring:
   profiles:
-    active: dev
+    active:
   cloud:
     config:
       uri: http://localhost:8080
