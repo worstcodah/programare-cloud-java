@@ -54,7 +54,7 @@ public class CircuitBreakerController {
     @GetMapping("/no-delay/without-fallback")
     public ResponseEntity<?> noDelayedCall(@RequestBody int numberOfRuns) {
 
-        CircuitBreaker.decorateSupplier(countCircuitBreaker, new CircuitBreakerSupplier());
+        //CircuitBreaker.decorateSupplier(countCircuitBreaker, new CircuitBreakerSupplier());
         try {
             for (int i = 0; i < numberOfRuns; ++i) {
                 countCircuitBreaker.executeSupplier(() -> httpBinService.getWithoutDelay());
@@ -74,7 +74,7 @@ public class CircuitBreakerController {
     @GetMapping("/delay/with-fallback/{seconds}")
     @io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker(name = "method2")
     public ResponseEntity<?> delayedCall(@RequestBody int numberOfRuns, @PathVariable int seconds) {
-        CircuitBreaker.decorateSupplier(countCircuitBreaker, new CircuitBreakerSupplier());
+        //CircuitBreaker.decorateSupplier(countCircuitBreaker, new CircuitBreakerSupplier());
         try {
             for (int i = 0; i < numberOfRuns; ++i) {
                 countCircuitBreaker.executeSupplier(() -> httpBinService.getWithDelay(seconds));
