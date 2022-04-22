@@ -54,14 +54,16 @@ public class CircuitBreakerController {
     @GetMapping("/no-delay/without-fallback")
     public ResponseEntity<?> noDelayedCall(@RequestBody int numberOfRuns) {
 
-        //CircuitBreaker.decorateSupplier(countCircuitBreaker, new CircuitBreakerSupplier());
         try {
             for (int i = 0; i < numberOfRuns; ++i) {
+                LOGGER.info("Executing supplier without delay");
                 countCircuitBreaker.executeSupplier(() -> httpBinService.getWithoutDelay());
             }
         } catch (Exception exception) {
+            LOGGER.error("Encountered an error (status 500)!");
             return new ResponseEntity<String>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
+        LOGGER.info("Ok");
         return ResponseEntity.ok("It's ok");
     }
 
@@ -72,16 +74,17 @@ public class CircuitBreakerController {
       This simulates a number of calls to an endpoint that has a specific delay. Log some messages
     */
     @GetMapping("/delay/with-fallback/{seconds}")
-    @io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker(name = "method2")
     public ResponseEntity<?> delayedCall(@RequestBody int numberOfRuns, @PathVariable int seconds) {
-        //CircuitBreaker.decorateSupplier(countCircuitBreaker, new CircuitBreakerSupplier());
         try {
             for (int i = 0; i < numberOfRuns; ++i) {
+                LOGGER.info("Executing supplier with delay");
                 countCircuitBreaker.executeSupplier(() -> httpBinService.getWithDelay(seconds));
             }
         } catch (Exception exception) {
+            LOGGER.error("Encountered an error (status 500)!");
             return new ResponseEntity<String>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
+        LOGGER.info("Ok");
         return ResponseEntity.ok("It's ok");
     }
 }
